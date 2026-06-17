@@ -1,0 +1,38 @@
+'use client'
+import { cn } from '@/shared/lib/cn'
+import type { ButtonHTMLAttributes } from 'react'
+
+type ButtonVariant = 'primary' | 'ghost' | 'floating'
+
+type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+  variant?: ButtonVariant
+  glow?: boolean
+}
+
+export function Button({
+  variant = 'primary',
+  glow = false,
+  className,
+  children,
+  disabled,
+  ...props
+}: ButtonProps) {
+  return (
+    <button
+      disabled={disabled}
+      className={cn(
+        'rounded-full font-sans font-medium transition-all duration-300 cursor-pointer',
+        variant === 'primary' && 'bg-accent text-black px-8 py-4 text-base',
+        variant === 'ghost' &&
+          'border border-accent text-accent px-8 py-4 text-base hover:bg-accent/10',
+        variant === 'floating' && 'bg-accent text-black px-10 py-4 text-base w-full',
+        glow && 'glow-pulse',
+        disabled && 'opacity-40 cursor-not-allowed',
+        className,
+      )}
+      {...props}
+    >
+      {children}
+    </button>
+  )
+}
