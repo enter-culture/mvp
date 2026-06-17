@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 
 const MESSAGES = [
   '사용자님의 여행 DNA를 분석 중입니다...',
@@ -13,6 +13,8 @@ type LoadingScreenProps = {
 
 export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [msgIdx, setMsgIdx] = useState(0)
+  const onCompleteRef = useRef(onComplete)
+  onCompleteRef.current = onComplete
 
   useEffect(() => {
     const interval = setInterval(
@@ -23,19 +25,16 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
   }, [])
 
   useEffect(() => {
-    const timer = setTimeout(onComplete, 4000)
+    const timer = setTimeout(() => onCompleteRef.current(), 4000)
     return () => clearTimeout(timer)
-  }, [onComplete])
+  }, [])
 
   return (
     <div className="animated-bg relative flex flex-col items-center justify-center min-h-dvh px-6">
       <div className="relative z-10 text-center max-w-xs">
         <div className="w-16 h-16 mx-auto mb-10 relative">
           <div className="absolute inset-0 rounded-full border-2 border-accent/20" />
-          <div
-            className="absolute inset-0 rounded-full border-2 border-transparent border-t-accent"
-            style={{ animation: 'spin 1s linear infinite' }}
-          />
+          <div className="absolute inset-0 rounded-full border-2 border-transparent border-t-accent animate-spin" />
         </div>
 
         <p
@@ -45,12 +44,6 @@ export function LoadingScreen({ onComplete }: LoadingScreenProps) {
           {MESSAGES[msgIdx]}
         </p>
       </div>
-
-      <style>{`
-        @keyframes spin {
-          to { transform: rotate(360deg); }
-        }
-      `}</style>
     </div>
   )
 }

@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useQuizFlow } from '@/features/quiz-flow/model/useQuizFlow'
 import { ProgressBar } from '@/shared/ui/ProgressBar'
 import { Chip } from '@/shared/ui/Chip'
@@ -22,6 +22,13 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
   } = useQuizFlow()
 
   const [visible, setVisible] = useState(true)
+  const transitionTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    return () => {
+      if (transitionTimerRef.current) clearTimeout(transitionTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     setVisible(true)
@@ -33,7 +40,7 @@ export function QuizScreen({ onComplete }: QuizScreenProps) {
       onComplete(result.persona)
     } else {
       setVisible(false)
-      setTimeout(() => setVisible(true), 50)
+      transitionTimerRef.current = setTimeout(() => setVisible(true), 50)
     }
   }
 

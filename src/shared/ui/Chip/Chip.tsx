@@ -11,6 +11,7 @@ export function Chip({ label, selected, onClick }: ChipProps) {
   return (
     <button
       type="button"
+      aria-pressed={selected}
       onClick={onClick}
       className={cn(
         'rounded-full px-4 py-2 text-sm font-sans border transition-all duration-200 cursor-pointer',
