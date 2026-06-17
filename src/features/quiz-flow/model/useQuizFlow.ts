@@ -4,6 +4,9 @@ import { questions } from '@/entities/question/data/questions'
 import { getPersona } from '../lib/getPersona'
 import type { Persona } from '@/entities/persona/model/types'
 
+const MIN_SELECTION = 3
+const MAX_SELECTION = 5
+
 type NextResult = { done: false } | { done: true; persona: Persona }
 
 export function useQuizFlow() {
@@ -16,14 +19,18 @@ export function useQuizFlow() {
 
   const currentQuestion = questions[step]
   const currentAnswers = answers[step]
-  const canProceed = currentAnswers.length > 0
+  const selectionCount = currentAnswers.length
+  const canProceed = selectionCount >= MIN_SELECTION
+  const maxReached = selectionCount >= MAX_SELECTION
   const isLastStep = step === questions.length - 1
 
   function toggleChip(chip: string) {
     setAnswers(prev =>
       prev.map((a, i) => {
         if (i !== step) return a
-        return a.includes(chip) ? a.filter(c => c !== chip) : [...a, chip]
+        if (a.includes(chip)) return a.filter(c => c !== chip)
+        if (a.length >= MAX_SELECTION) return a
+        return [...a, chip]
       })
     )
   }
@@ -41,7 +48,9 @@ export function useQuizFlow() {
     totalSteps: questions.length,
     currentQuestion,
     currentAnswers,
+    selectionCount,
     canProceed,
+    maxReached,
     isLastStep,
     toggleChip,
     nextStep,
