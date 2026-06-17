@@ -23,10 +23,10 @@ export function Button({
       disabled={disabled}
       className={cn(
         'rounded-full font-sans font-medium transition-all duration-300 cursor-pointer',
-        variant === 'primary' && 'bg-accent text-black px-8 py-4 text-base',
+        variant === 'primary' && 'bg-accent text-[#07060e] px-8 py-4 text-base font-serif font-bold tracking-wide',
         variant === 'ghost' &&
-          'border border-accent text-accent px-8 py-4 text-base hover:bg-accent/10',
-        variant === 'floating' && 'bg-accent text-black px-10 py-4 text-base w-full',
+          'border border-[#d4a8534d] text-accent-light px-8 py-4 text-base hover:bg-[#d4a8531f] font-serif',
+        variant === 'floating' && 'bg-accent text-[#07060e] px-10 py-4 text-base w-full font-serif font-bold tracking-wide shadow-[0_0_30px_#d4a85340]',
         glow && 'glow-pulse',
         disabled && 'opacity-40 cursor-not-allowed',
         className,
