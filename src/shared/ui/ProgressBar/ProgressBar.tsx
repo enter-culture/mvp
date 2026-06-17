@@ -7,7 +7,7 @@ type ProgressBarProps = {
 }
 
 export function ProgressBar({ current, total, className }: ProgressBarProps) {
-  const pct = (current / total) * 100
+  const pct = total > 0 ? Math.min(100, Math.max(0, (current / total) * 100)) : 0
   return (
     <div className={cn('w-full', className)}>
       <p className="text-xs text-white/40 mb-2 font-sans">

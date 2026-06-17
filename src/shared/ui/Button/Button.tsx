@@ -19,6 +19,7 @@ export function Button({
 }: ButtonProps) {
   return (
     <button
+      type="button"
       disabled={disabled}
       className={cn(
         'rounded-full font-sans font-medium transition-all duration-300 cursor-pointer',
