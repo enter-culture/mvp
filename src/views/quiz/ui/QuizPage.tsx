@@ -42,7 +42,7 @@ export function QuizPage() {
         <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '50%', background: 'linear-gradient(to bottom, transparent, #07060e)' }} />
         <img src={char} alt="" style={{ position: 'absolute', bottom: 0, left: '50%', transform: 'translateX(-50%)', height: '90%', objectFit: 'contain' }} />
         <div style={{ position: 'absolute', top: '1rem', left: '1rem', zIndex: 10 }}>
-          <img src="/assets/logo.png" alt="CULTURE" style={{ height: '26px', cursor: 'pointer', opacity: 0.8 }} onClick={() => router.push('/')} />
+          <span onClick={() => router.push('/')} style={{ fontFamily: '"Noto Serif KR", serif', fontSize: '1.1rem', fontWeight: 900, color: '#ede9f7', letterSpacing: '0.15em', cursor: 'pointer', textShadow: '0 0 20px rgba(212,168,83,0.4)' }}>CULTURE</span>
         </div>
         <button type="button" onClick={() => router.push('/')} style={{
           position: 'absolute', top: '1rem', right: '1rem',

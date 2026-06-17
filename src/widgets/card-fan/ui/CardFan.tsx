@@ -7,7 +7,7 @@ type CardFanProps = {
   onSelect: (card: TravelCard) => void
 }
 
-// sajuboyz 정확한 transform 값 (오른쪽으로 펼쳐지는 부채)
+
 const SLOTS = [
   { tx: 0,   ty: -20, scale: 1,    rot: 0,  z: 7, opacity: 1   },
   { tx: 60,  ty: 0,   scale: 0.88, rot: 8,  z: 6, opacity: 1   },
@@ -318,7 +318,7 @@ export function CardFan({ onSelect }: CardFanProps) {
             onMouseDown={e => (e.currentTarget.style.transform = 'scale(0.97)')}
             onMouseUp={e => (e.currentTarget.style.transform = 'scale(1)')}
           >
-            Select card
+            이 카드 선택하기
           </button>
 
           <button
@@ -339,7 +339,7 @@ export function CardFan({ onSelect }: CardFanProps) {
               letterSpacing: '0.02em',
             }}
           >
-            I want to ask something else
+            다른 카드 보기 →
           </button>
         </div>
       </div>

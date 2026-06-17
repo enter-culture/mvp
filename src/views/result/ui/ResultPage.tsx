@@ -28,7 +28,7 @@ function ResultContent() {
 
         {/* 로고 */}
         <div style={{ position: 'absolute', top: '1rem', left: '1.25rem', zIndex: 10 }}>
-          <img src="/assets/logo.png" alt="CULTURE" style={{ height: '24px', opacity: 0.8, cursor: 'pointer' }} onClick={() => router.push('/')} />
+          <span onClick={() => router.push('/')} style={{ fontFamily: '"Noto Serif KR", serif', fontSize: '1rem', fontWeight: 900, color: '#ede9f7', letterSpacing: '0.15em', cursor: 'pointer', textShadow: '0 0 20px rgba(212,168,83,0.4)' }}>CULTURE</span>
         </div>
 
         {/* 페르소나 타입 뱃지 */}

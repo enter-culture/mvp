@@ -55,7 +55,7 @@ body {
   overflow-x: hidden;
 }
 
-/* sajuboyz 노이즈 텍스처 오버레이 */
+/* 노이즈 텍스처 오버레이 */
 body::after {
   content: "";
   z-index: 9999;
